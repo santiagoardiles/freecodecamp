@@ -1,6 +1,6 @@
 # Birthday Reminder
 
-### Description
+## Description
 
 Simple reminder app.
 
