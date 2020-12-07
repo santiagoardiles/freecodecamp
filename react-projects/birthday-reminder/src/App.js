@@ -1,6 +1,11 @@
+/*    App.js    */
+
+// Setup.
 import React, { useState } from "react";
-import data from "./data";
 import List from "./List";
+
+// Data.
+import data from "./data";
 
 function App() {
   const [people, setPeople] = useState(data);

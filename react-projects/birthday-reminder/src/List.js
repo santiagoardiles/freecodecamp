@@ -7,7 +7,7 @@ const List = ({ people }) => {
   return (
     <>
       {people.map((person) => {
-        // Destructuring each `people`.
+        // Destructuring each `person`.
         const { id, name, age, image } = person;
 
         return (
