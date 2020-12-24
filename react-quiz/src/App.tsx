@@ -54,7 +54,7 @@ const App = () => {
       // User's answer.
       const answer = e.currentTarget.value;
 
-      // Checks answer against correct answer.
+      // Checks selected answer against correct answer.
       const correct = questions[number].correct_answer === answer;
 
       // Adds score if answer is correct.

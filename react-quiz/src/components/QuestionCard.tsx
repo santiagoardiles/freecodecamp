@@ -1,3 +1,6 @@
+/*       Question Card       */
+
+// Setup.
 import React from "react";
 
 // Types.

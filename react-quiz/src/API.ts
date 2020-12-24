@@ -1,3 +1,5 @@
+/*       API       */
+
 import { shuffleArray } from "./utils";
 
 export type Question = {
