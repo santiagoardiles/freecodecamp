@@ -1,3 +1,6 @@
+/*       Exercises list       */
+
+// Setup.
 import React from "react";
 
 function ExercisesList() {

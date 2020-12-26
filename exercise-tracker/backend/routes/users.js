@@ -2,7 +2,7 @@
 
 // Setup.
 const router = require("express").Router();
-let User = require("../models/user.model");
+const User = require("../models/user.model");
 
 /* -------------- Routes start. -------------- */
 

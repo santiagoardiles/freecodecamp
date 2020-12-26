@@ -2,7 +2,7 @@
 
 // Setup.
 const router = require("express").Router();
-let Exercise = require("../models/exercise.model");
+const Exercise = require("../models/exercise.model");
 
 /* -------------- Routes start. -------------- */
 

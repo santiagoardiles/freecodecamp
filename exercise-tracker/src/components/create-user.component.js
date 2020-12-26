@@ -1,3 +1,6 @@
+/*       Create user       */
+
+// Setup.
 import React from "react";
 
 function CreateUser() {
