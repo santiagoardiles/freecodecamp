@@ -1,7 +1,8 @@
-/*       Create exercise       */
+/*       Create exercise.       */
 
 // Setup.
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import DatePicker from "react-datepicker";
 
 // Styles.
@@ -17,23 +18,27 @@ function CreateExercise() {
 
   // componentDidMount.
   useEffect(() => {
-    setUsers(["Joey", "Mary"]);
+    axios.get("http://localhost:5000/users/").then((res) => {
+      if (res.data.length > 0) {
+        setUsers(res.data.map((user) => user.username));
+      }
+    });
   }, []);
 
-  // `onChange` handlers.
-  const handleChangeUsername = (e) => {
+  // Handlers.
+  const handleUsername = (e) => {
     setUsername(e.target.value);
   };
 
-  const handleChangeDescription = (e) => {
+  const handleDescription = (e) => {
     setDescription(e.target.value);
   };
 
-  const handleChangeDuration = (e) => {
+  const handleDuration = (e) => {
     setDuration(e.target.value);
   };
 
-  const handleChangeDate = (date) => {
+  const handleDate = (date) => {
     setDate(date);
   };
 
@@ -47,22 +52,26 @@ function CreateExercise() {
       date,
     };
 
-    console.log(exercise);
+    axios
+      .post("http://localhost:5000/exercises/add", exercise)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
 
-    //window.location = "/";
+    window.location = "/";
   };
 
   return (
     <div>
       <h3>Create New Exercise Log</h3>
       <form onSubmit={handleSubmit}>
+        {/* Username's dropdown menu. */}
         <div className="form-group">
           <label>Username: </label>
           <select
             required
             className="form-control"
             value={username}
-            onChange={handleChangeUsername}
+            onChange={handleUsername}
           >
             {users.map((user) => {
               return (
@@ -74,6 +83,7 @@ function CreateExercise() {
           </select>
         </div>
 
+        {/* Description field. */}
         <div className="form-group">
           <label>Description: </label>
           <input
@@ -81,27 +91,30 @@ function CreateExercise() {
             required
             className="form-control"
             value={description}
-            onChange={handleChangeDescription}
+            onChange={handleDescription}
           />
         </div>
 
+        {/* Duration field. */}
         <div className="form-group">
           <label>Duration (in minutes): </label>
           <input
             type="text"
             className="form-control"
             value={duration}
-            onChange={handleChangeDuration}
+            onChange={handleDuration}
           />
         </div>
 
+        {/* Date field. */}
         <div className="form-group">
           <label>Date: </label>
           <div>
-            <DatePicker selected={date} onChange={handleChangeDate} />
+            <DatePicker selected={date} onChange={handleDate} />
           </div>
         </div>
 
+        {/* Submit button. */}
         <div className="form-group">
           <input
             type="submit"
