@@ -1,0 +1,19 @@
+#       .gitignore       #
+
+# Enviroment variables.
+/.env.local
+/.env.local.php
+/.env.*.local
+
+# Configuration files.
+/config/secrets/prod/prod.decrypt.private.php
+
+# Other things.
+/public/bundles/
+/var/
+/vendor/
+
+# I do not really know what this is.
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
