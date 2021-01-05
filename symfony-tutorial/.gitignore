@@ -17,3 +17,7 @@
 .phpunit
 .phpunit.result.cache
 /phpunit.xml
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
