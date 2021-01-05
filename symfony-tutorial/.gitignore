@@ -1,6 +1,8 @@
 #       .gitignore       #
 
 # Enviroment variables.
+.env
+.env.test
 /.env.local
 /.env.local.php
 /.env.*.local
@@ -18,6 +20,6 @@
 .phpunit.result.cache
 /phpunit.xml
 
-###> symfony/web-server-bundle ###
+# Symfony Web Server Bundle.
 /.web-server-pid
-###< symfony/web-server-bundle ###
+
