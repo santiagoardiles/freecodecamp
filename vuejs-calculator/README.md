@@ -1,24 +1,9 @@
 # vuejs-calculator
 
-## Project setup
-```
-yarn install
-```
+## Description
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+Codey Seibert's tutorial about how to create a basic calculator component inside a web browser.
 
-### Compiles and minifies for production
-```
-yarn build
-```
+## Credits
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[Codey Seibert](https://www.youtube.com/c/WebDevJunkie/featured) | [Video](https://youtu.be/m1_ih43p24sF)
