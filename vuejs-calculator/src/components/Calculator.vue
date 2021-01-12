@@ -10,30 +10,30 @@
     <div class="btn" @click="clear">C</div>
     <div class="btn" @click="sign">+/-</div>
     <div class="btn" @click="percent">%</div>
-    <div class="btn operator">÷</div>
+    <div class="btn operator" @click="divide">÷</div>
 
     <!-- Second row. -->
     <div class="btn" @click="append('7')">7</div>
     <div class="btn" @click="append('8')">8</div>
     <div class="btn" @click="append('9')">9</div>
-    <div class="btn operator">x</div>
+    <div class="btn operator" @click="times">x</div>
 
     <!-- Third row. -->
     <div class="btn" @click="append('4')">4</div>
     <div class="btn" @click="append('5')">5</div>
     <div class="btn" @click="append('6')">6</div>
-    <div class="btn operator">-</div>
+    <div class="btn operator" @click="minus">-</div>
 
     <!-- Fourth row. -->
     <div class="btn" @click="append('1')">1</div>
     <div class="btn" @click="append('2')">2</div>
     <div class="btn" @click="append('3')">3</div>
-    <div class="btn operator">+</div>
+    <div class="btn operator" @click="plus">+</div>
 
     <!-- Footer row. -->
     <div class="btn zero">0</div>
-    <div class="btn">.</div>
-    <div class="btn operator">=</div>
+    <div class="btn" @click="dot">.</div>
+    <div class="btn operator" @click="equal">=</div>
   </div>
 </template>
 
@@ -42,7 +42,10 @@
 export default {
   data() {
     return {
+      previous: null,
       current: "",
+      operator: null,
+      operatorClicked: false,
     };
   },
 
@@ -63,7 +66,47 @@ export default {
     },
 
     append(number) {
-      this.current = this.current + number; // Concatenation, not addition.
+      if (this.operatorClicked) {
+        this.current = "";
+        this.operatorClicked = false;
+      }
+
+      this.current = `${this.current}${number}`;
+    },
+
+    dot() {
+      if (this.current.indexOf(".") === -1) {
+        this.append(".");
+      }
+    },
+
+    // Math operations.
+    setPrevious() {
+      this.previous = this.current;
+      this.operatorClicked = true;
+    },
+    divide() {
+      this.operator = (a, b) => a / b;
+      this.setPrevious();
+    },
+    times() {
+      this.operator = (a, b) => a * b;
+      this.setPrevious();
+    },
+    minus() {
+      this.operator = (a, b) => a - b;
+      this.setPrevious();
+    },
+    plus() {
+      this.operator = (a, b) => a + b;
+      this.setPrevious();
+    },
+    equal() {
+      this.current = `${this.operator(
+        parseFloat(this.current),
+        parseFloat(this.previous)
+      )}`;
+      this.previous = null;
     },
   },
 };
@@ -72,6 +115,8 @@ export default {
 <!-- Styles. -->
 <style scoped>
 .calculator {
+  margin: 0 auto;
+  width: 500px;
   font-size: 50px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
