@@ -6,9 +6,9 @@
 #                                              #
 # --------------- freeCodeCamp --------------- #
 
-# --------------------
+# ------------------------------------
 # Imports.
-# --------------------
+# ------------------------------------
 from altair.vegalite.v4.schema.core import FontWeight
 import streamlit as st
 import pandas as pd
@@ -18,10 +18,9 @@ import seaborn as sns
 import numpy as np
 import yfinance as yf
 
-
-# --------------------
+# ------------------------------------
 # App title.
-# --------------------
+# ------------------------------------
 st.title("S&P 500 App")
 
 st.markdown(
@@ -34,7 +33,10 @@ This app retrieves the list of the **S&P 500** (from Wikipedia) and its correspo
 
 st.sidebar.header("User Input Features")
 
+
+# ------------------------------------
 # Web scraping of S&P 500 data.
+# ------------------------------------
 @st.cache
 def load_data():
     url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
@@ -46,13 +48,19 @@ def load_data():
 df = load_data()
 sector = df.groupby("GICS Sector")
 
+
+# ------------------------------------
 # Sidebar - Sector selection
+# ------------------------------------
 sorted_sector_unique = sorted(df["GICS Sector"].unique())
 selected_sector = st.sidebar.multiselect(
     "Sector", sorted_sector_unique, sorted_sector_unique
 )
 
+
+# ------------------------------------
 # Filtering data.
+# ------------------------------------
 df_selected_sector = df[(df["GICS Sector"].isin(selected_sector))]
 
 st.header("Display Companies in Selected Sector")
@@ -65,7 +73,10 @@ st.write(
 )
 st.dataframe(df_selected_sector)
 
+
+# ------------------------------------
 # Download S&P 500 data.
+# ------------------------------------
 # https://discuss.streamlit.io/t/how-to-download-file-in-streamlit/1806
 def filedownload(df):
     csv = df.to_csv(index=False)
@@ -87,7 +98,10 @@ data = yf.download(
     proxy=None,
 )
 
+
+# -----------------------------------
 # Plot closing price of query symbol.
+# ------------------------------------
 def price_plot(symbol):
     df = pd.DataFrame(data[symbol].Close)
     df["Date"] = df.index
