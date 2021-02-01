@@ -57,11 +57,11 @@ player_stats = load_data(selected_year)
 # Side bar.
 # --------------------
 
-# Sidebar - Team selection.
+# Team selection.
 sorted_unique_team = sorted(player_stats.Tm.unique())
 selected_team = st.sidebar.multiselect("Team", sorted_unique_team, sorted_unique_team)
 
-# Sidebar - Position selection.
+# Position selection.
 unique_pos = ["C", "PF", "SF", "PG", "SG"]
 selected_pos = st.sidebar.multiselect("Position", unique_pos, unique_pos)
 
@@ -72,8 +72,10 @@ df_selected_team = player_stats[
 
 st.dataframe(df_selected_team)
 
+
+# --------------------
 # Download NBA player stats data.
-# https://discuss.streamlit.io/t/how-to-download-filein-streamlit/1806
+# --------------------
 def filedownload(df):
     csv = df.to_csv(index=False)
     b64 = base64.b64encode(csv.encode()).decode()
